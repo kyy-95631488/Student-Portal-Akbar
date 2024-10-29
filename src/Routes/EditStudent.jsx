@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import './EditStudent.css'; // Ensure this file contains the necessary styles
+import './EditStudent.css';
 
 const EditStudent = () => {
     const { id } = useParams();
@@ -12,12 +12,12 @@ const EditStudent = () => {
         birthDate: "",
         gender: "",
         programStudy: "",
-        faculty: "" // Added faculty field
+        faculty: ""
     });
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/server/students/${id}`)
+        fetch(`https://student-portal-akbar.vercel.app/server/students/${id}`)
             .then(response => response.json())
             .then(data => setForm(data))
             .catch(error => console.error('Error fetching student data:', error));
@@ -30,7 +30,7 @@ const EditStudent = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/server/students/${id}`, {
+            const response = await fetch(`https://student-portal-akbar.vercel.app/server/students/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

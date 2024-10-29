@@ -33,16 +33,15 @@ const AddStudent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        // Check if any form field is empty
+
         const isFormValid = Object.values(form).every(value => value.trim() !== "");
         
         if (!isFormValid) {
             setPopup({ visible: true, message: "All fields are required!", success: false });
-            return; // Exit the function if the form is invalid
+            return;
         }
     
-        fetch("http://localhost:5000/server/students", {
+        fetch("https://student-portal-akbar.vercel.app/server/students", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +52,7 @@ const AddStudent = () => {
         .then(data => {
             console.log("Student added:", data);
             setPopup({ visible: true, message: "Student added successfully!", success: true });
-            resetForm(); // Reset the form on success
+            resetForm();
         })
         .catch((error) => {
             console.error("Error adding student:", error);
@@ -84,7 +83,6 @@ const AddStudent = () => {
                 <button type="submit">Add Student</button>
             </form>
 
-            {/* Popup for success/error message */}
             {popup.visible && (
                 <div className={`popup ${popup.success ? "success" : "error"}`}>
                     <p>{popup.message}</p>

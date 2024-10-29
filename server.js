@@ -7,11 +7,11 @@ const PORT = 5000;
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://student-portal-akbar.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type']
 }));
-app.options('*', cors({ origin: 'http://localhost:3000' }));
+app.options('*', cors({ origin: 'https://student-portal-akbar.vercel.app' }));
 
 app.get('/server/students-db.json', (_req, res) => {
     fs.readFile(path.join(__dirname, 'server', 'students-db.json'), 'utf8', (err, data) => {

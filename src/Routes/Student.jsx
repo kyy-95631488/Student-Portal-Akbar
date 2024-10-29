@@ -9,7 +9,7 @@ const Student = () => {
     const [notification, setNotification] = useState({ message: '', type: '' });
 
     useEffect(() => {
-        fetch('http://localhost:5000/server/students-db.json')
+        fetch('https://student-portal-akbar.vercel.app/server/students-db.json')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -29,12 +29,11 @@ const Student = () => {
         const id = studentToDelete;
         setShowConfirmation(false);
 
-        fetch(`http://localhost:5000/server/students/${id}`, { method: 'DELETE' })
+        fetch(`https://student-portal-akbar.vercel.app/server/students/${id}`, { method: 'DELETE' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to delete the student');
                 }
-                // Update students list after successful deletion
                 setStudents(students.filter(student => student.id !== id));
                 setNotification({ message: 'Student deleted successfully!', type: 'success' });
             })
@@ -43,7 +42,6 @@ const Student = () => {
                 setNotification({ message: 'Failed to delete the student.', type: 'error' });
             })
             .finally(() => {
-                // Remove the notification after 3 seconds
                 setTimeout(() => setNotification({ message: '', type: '' }), 3000);
             });
     };
@@ -56,14 +54,12 @@ const Student = () => {
         <div className="student-container">
             <h1 className="student-header">All Students</h1>
 
-            {/* Notification */}
             {notification.message && (
                 <div className={`notification ${notification.type}`}>
                     {notification.message}
                 </div>
             )}
 
-            {/* Confirmation Dialog */}
             {showConfirmation && (
                 <div className="confirmation-dialog">
                     <p>Are you sure you want to delete this student?</p>
