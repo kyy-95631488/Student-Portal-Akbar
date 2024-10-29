@@ -1,0 +1,15 @@
+{
+	"name": "react-dasar-assignment-student-portal-3",
+	"course": "Frontend Web Development with React",
+	"title": "Assignment - Student Portal part 3",
+	"order": 999,
+	"topics": [
+		"React Router DOM"
+	],
+	"image": "react-js",
+	"command": "npm run test",
+	"totalTestCase": 19,
+	"metadata": {
+		"type": "assignment"
+	}
+}
